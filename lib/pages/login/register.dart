@@ -87,9 +87,9 @@ class _RegisterPageState  extends State<RegisterPage> {
                   keyboardType: TextInputType.text,
                   onSaved: (val) => gender = val,
                   decoration: new InputDecoration(labelText: "Gender"),
-                  validator: (String number) {
-                    if (number.length != 10)
-                      return 'Invalid mobile number';
+                  validator: (String gender) {
+                    if (gender.isEmpty)
+                      return 'Please enter your gender';
                     else
                       return null;
                   },

@@ -1,53 +1,9 @@
-/**import 'dart:async';
-    import 'dart:convert';**/
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_app_database/pages/pathome.dart';
+import 'package:flutter_app_database/pages/patprofile.dart';
+import 'package:flutter_app_database/pages/viewbook.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
-
-
-/**Future<List<Photo>> fetchPhotos(http.Client client) async {
-    final response =
-    await client.get('https://jsonplaceholder.typicode.com/photos');
-
-    // Use the compute function to run parsePhotos in a separate isolate.
-    return compute(parsePhotos, response.body);
-    }**/
-
-// A function that converts a response body into a List<Photo>.
-/**List<Photo> parsePhotos(String responseBody) {
-    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-
-    return parsed.map<Photo>((json) => Photo.fromJson(json)).toList();
-    }
-
-    class Photo {
-    final int albumId;
-    final int id;
-    final String title;
-    final String url;
-    final String thumbnailUrl;
-
-    Photo({this.albumId, this.id, this.title, this.url, this.thumbnailUrl});
-
-    factory Photo.fromJson(Map<String, dynamic> json) {
-    return Photo(
-    albumId: json['albumId'] as int,
-    id: json['id'] as int,
-    title: json['title'] as String,
-    url: json['url'] as String,
-    thumbnailUrl: json['thumbnailUrl'] as String,
-    );
-    }
-    }**/
-
-/**void main() => runApp(HomePage());**/
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -55,9 +11,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final List<Widget>_children = [
-    /**pathomescreen(),
-        viewdoc(),
-        patprofile()**/
+    pathomescreen(),
+    viewdoc(),
+    patprofile()
 
   ];
 
@@ -67,7 +23,6 @@ class _HomePageState extends State<HomePage> {
       _selectedIndex = value;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,148 +55,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }
-
-/**class HomePage extends StatefulWidget {
-
-    int _selectedIndex = 0;
-    final List<Widget>_children = [
-    pathomescreen(),
-    viewdoc(),
-    patprofile()
-
-    ];
-
-
-    void onTapped(int value) {
-    setState(() {
-    _selectedIndex = value;
-    });
-    }
-    @override
-    Widget build(BuildContext context) {
-    /** final appTitle = 'Home Page - Photos';**/
-    return Scaffold(
-    body: _children[_selectedIndex] ,
-    bottomNavigationBar: BottomNavigationBar(
-    showSelectedLabels: false,
-    showUnselectedLabels: false,
-    currentIndex: _selectedIndex,
-    items: [
-    BottomNavigationBarItem(
-    icon: Icon(
-    LineAwesomeIcons.home,
-    size: 30.0,
-    ),
-    title: Text('1')),
-    BottomNavigationBarItem(
-    icon: Icon(
-    LineAwesomeIcons.book,
-    size: 30.0,
-    ),
-    title: Text('2')),
-    BottomNavigationBarItem(
-    icon: Icon(
-    LineAwesomeIcons.male,
-    size: 30.0,
-    ),
-    title: Text('3')),
-    ],
-    onTap: onTapped,
-    ),
-    );
-    /** return new Scaffold(
-    body: new Center(
-    child: MyHomePage(title: appTitle),
-    ),
-    );**/
-    }
-    }
-
-
-    /**class MyHomePage extends StatefulWidget {
-    final String title;
-
-    MyHomePage({Key key, this.title}) : super(key: key);
-    int _selectedIndex = 0;
-    final List<Widget>_children = [
-    pathomescreen(),
-    viewdoc(),
-    patprofile()
-
-    ];
-
-
-    void onTapped(int value) {
-    setState(() {
-    _selectedIndex = value;
-    });
-    }
-    @override
-    Widget build(BuildContext context) {
-    /** return Scaffold(
-    appBar: AppBar(
-    title: Text(title),
-    ),
-    body: FutureBuilder<List<Photo>>(
-    future: fetchPhotos(http.Client()),
-    builder: (context, snapshot) {
-    if (snapshot.hasError) print(snapshot.error);
-
-    return snapshot.hasData
-    ? PhotosList(photos: snapshot.data)
-    : Center(child: CircularProgressIndicator());
-    },
-    ),
-    );**/
-    return Scaffold(
-    body: _children[_selectedIndex] ,
-    bottomNavigationBar: BottomNavigationBar(
-    showSelectedLabels: false,
-    showUnselectedLabels: false,
-    currentIndex: _selectedIndex,
-    items: [
-    BottomNavigationBarItem(
-    icon: Icon(
-    LineAwesomeIcons.home,
-    size: 30.0,
-    ),
-    title: Text('1')),
-    BottomNavigationBarItem(
-    icon: Icon(
-    LineAwesomeIcons.book,
-    size: 30.0,
-    ),
-    title: Text('2')),
-    BottomNavigationBarItem(
-    icon: Icon(
-    LineAwesomeIcons.male,
-    size: 30.0,
-    ),
-    title: Text('3')),
-    ],
-    onTap: onTapped,
-    ),
-    );
-    }
-    }**/
-
-    /**class PhotosList extends StatelessWidget {
-    final List<Photo> photos;
-
-    PhotosList({Key key, this.photos}) : super(key: key);
-
-    @override
-    Widget build(BuildContext context) {
-    return GridView.builder(
-    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    crossAxisCount: 2,
-    ),
-    itemCount: photos.length,
-    itemBuilder: (context, index) {
-    return Image.network(photos[index].thumbnailUrl);
-    },
-    );
-    }
-    }**/  **/
