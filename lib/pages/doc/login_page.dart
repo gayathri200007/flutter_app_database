@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_database/data/database-helper.dart';
-import 'package:flutter_app_database/models/user.dart';
-import 'package:flutter_app_database/pages/doc/login_page.dart';
-import 'package:flutter_app_database/pages/login/login_presenter.dart';
+import 'package:flutter_app_database/models/user1.dart';
+import 'package:flutter_app_database/pages/doc/loginpresenter.dart';
+import 'package:flutter_app_database/pages/doc/homedoc.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage1 extends StatefulWidget {
   @override
-  _LoginPageState createState() => new _LoginPageState();
+  _LoginPage1State createState() => new _LoginPage1State();
 }
 
-class _LoginPageState extends State<LoginPage> implements LoginPageContract {
+class _LoginPage1State extends State<LoginPage1> implements LoginPageContract {
   BuildContext _ctx;
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
@@ -24,13 +24,9 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
   }
 
   void _register() {
-    Navigator.of(context).pushNamed("/register");
+    Navigator.of(context).pushNamed("/register1");
   }
-  void _doc() {
 
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage1()),);
-
-  }
 
   void _submit() {
     final form = formKey.currentState;
@@ -65,11 +61,7 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
       child: new Text("Register"),
       color: Colors.green,
     );
-    var docBtn = new RaisedButton(
-      onPressed: _doc,
-      child: new Text("Login as Doctor"),
-      color: Colors.green,
-    );
+
     var loginForm = new Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -109,11 +101,9 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
         new Padding(
             padding: const EdgeInsets.all(10.0),
             child: loginBtn),
-        registerBtn,
-        new Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: docBtn),
 
+
+        registerBtn
       ],
     );
 
@@ -141,19 +131,19 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
   }
 
   @override
-  void onLoginSuccess(User user) async {
+  void onLoginSuccess(User1 user1) async {
     // TODO: implement onLoginSuccess
-    if(user.username == ""){
+    if(user1.username1 == ""){
       _showSnackBar("Login not successful");
     }else{
-      _showSnackBar(user.toString());
+      _showSnackBar(user1.toString());
     }
     setState(() {
       _isLoading = false;
     });
-    if(user.flaglogged == "logged"){
+    if(user1.flaglogged1 == "logged"){
       print("Logged");
-      Navigator.of(context).pushNamed("/home");
+      Navigator.of(context).pushNamed("/home1");
     }else{
       print("Not Logged");
     }
